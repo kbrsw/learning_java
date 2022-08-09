@@ -1,22 +1,15 @@
 import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.data.function.Function2D;
 import org.jfree.data.general.DatasetUtilities;
 import org.jfree.data.xy.XYDataset;
-import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYSeriesCollection;
+import org.jfree.ui.ApplicationFrame;
 
 import java.awt.*;
 import java.io.File;
-
 import java.io.IOException;
-import java.util.Scanner;
-
-
-import javax.swing.*;
 
 
 public class Main {
@@ -55,21 +48,20 @@ public class Main {
 
         final JFreeChart chart = ChartFactory.createScatterPlot("eee", "x", "y", dataset1, PlotOrientation.VERTICAL, true, true, false);
         ChartUtilities.saveChartAsPNG(new File("test.png"), chart, 500, 500);
-        
 
+        ChartPanel chartPanel = new ChartPanel(chart);
+        chartPanel.setPreferredSize(new Dimension(500, 270));
 
+        ApplicationFrame frame = new ApplicationFrame("Example");
 
-
+        frame.setContentPane(chartPanel);
+        frame.pack();
+        frame.setVisible(true);
 
     }
 
 
     public static void main(String[] args) throws IOException {
         cycle();
-
-
-
-
-
     }
 }
